@@ -34,7 +34,7 @@ export default class LocalTyePathProvider implements TyePathProvider {
     {
         try
         {
-            const tyePath = 'tye';
+            const tyePath = 'tye2';
             const tyeCliClient = new LocalTyeCliClient(() => Promise.resolve(tyePath));
 
             await tyeCliClient.version();
@@ -46,6 +46,6 @@ export default class LocalTyePathProvider implements TyePathProvider {
             // Best effort; In case of error, fallback to homedir.
         }
 
-        return path.join(os.homedir(), '.dotnet', 'tools', os.platform() === 'win32' ? 'tye.exe' : 'tye');
+        return path.join(os.homedir(), '.dotnet', 'tools', os.platform() === 'win32' ? 'tye2.exe' : 'tye2');
     }
 }

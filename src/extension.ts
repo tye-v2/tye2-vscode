@@ -53,7 +53,7 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 
 	ext.context = context;
 	ext.ignoreBundle = true;
-	ext.outputChannel = registerDisposable(createAzExtOutputChannel('Tye', 'tye'));
+	ext.outputChannel = registerDisposable(createAzExtOutputChannel('Tye2', 'tye2'));
 
 	registerUIExtensionVariables(ext);
 
@@ -72,12 +72,12 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 			const tyeProcessProvider = new LocalTyeProcessProvider(new LocalPortProvider(), createPlatformProcessProvider(), tyeClientProvider, tyePathProvider);
 			const tyeApplicationProvider = new TaskBasedTyeApplicationProvider(tyeProcessProvider, tyeClientProvider);
 
-			registerDisposable(vscode.workspace.registerTextDocumentContentProvider('tye-log', registerDisposable(new TyeLogDocumentContentProvider(tyeApplicationProvider, tyeClientProvider))));
+			registerDisposable(vscode.workspace.registerTextDocumentContentProvider('tye2-log', registerDisposable(new TyeLogDocumentContentProvider(tyeApplicationProvider, tyeClientProvider))));
 		
 			const extensionPackage = <ExtensionPackage>context.extension.packageJSON;
 			const tyeCliClient = new LocalTyeCliClient(() => tyePathProvider.getTyePath());
 			const ui = new AggregateUserInput(actionContext.ui);
-			const tyeInstallationManager = new LocalTyeInstallationManager(extensionPackage.engines['tye'], tyeCliClient, ui);
+			const tyeInstallationManager = new LocalTyeInstallationManager(extensionPackage.engines['tye2'], tyeCliClient, ui);
 
 			const treeProvider = new TyeServicesTreeDataProvider(tyeApplicationProvider, tyeClientProvider, tyeInstallationManager, ui);
 
@@ -168,7 +168,7 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 	
 			const applicationWatcher = registerDisposable(new TyeApplicationDebugSessionWatcher(debugSessionMonitor, tyeApplicationProvider));
 		
-			registerDisposable(vscode.debug.registerDebugConfigurationProvider('tye', new TyeDebugConfigurationProvider(debugSessionMonitor, tyeApplicationProvider, applicationWatcher, ui)));
+			registerDisposable(vscode.debug.registerDebugConfigurationProvider('tye2', new TyeDebugConfigurationProvider(debugSessionMonitor, tyeApplicationProvider, applicationWatcher, ui)));
 		
 			registerDisposable(vscode.tasks.registerTaskProvider('tye-run', new TyeRunCommandTaskProvider(telemetryProvider, tyeApplicationProvider, tyeClientProvider, tyeInstallationManager, tyePathProvider)));
 
