@@ -77,7 +77,7 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 			const extensionPackage = <ExtensionPackage>context.extension.packageJSON;
 			const tyeCliClient = new LocalTyeCliClient(() => tyePathProvider.getTyePath());
 			const ui = new AggregateUserInput(actionContext.ui);
-			const tyeInstallationManager = new LocalTyeInstallationManager(extensionPackage.engines['tye'], tyeCliClient, ui);
+			const tyeInstallationManager = new LocalTyeInstallationManager(extensionPackage.engines['tye2'], tyeCliClient, ui);
 
 			const treeProvider = new TyeServicesTreeDataProvider(tyeApplicationProvider, tyeClientProvider, tyeInstallationManager, ui);
 
@@ -168,7 +168,7 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 	
 			const applicationWatcher = registerDisposable(new TyeApplicationDebugSessionWatcher(debugSessionMonitor, tyeApplicationProvider));
 		
-			registerDisposable(vscode.debug.registerDebugConfigurationProvider('tye', new TyeDebugConfigurationProvider(debugSessionMonitor, tyeApplicationProvider, applicationWatcher, ui)));
+			registerDisposable(vscode.debug.registerDebugConfigurationProvider('tye2', new TyeDebugConfigurationProvider(debugSessionMonitor, tyeApplicationProvider, applicationWatcher, ui)));
 		
 			registerDisposable(vscode.tasks.registerTaskProvider('tye-run', new TyeRunCommandTaskProvider(telemetryProvider, tyeApplicationProvider, tyeClientProvider, tyeInstallationManager, tyePathProvider)));
 
