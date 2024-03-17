@@ -1,8 +1,4 @@
-# Tye for Visual Studio Code (Preview)
-
-[![Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/ms-azuretools.vscode-tye.svg)](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-tye)
-[![Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/ms-azuretools.vscode-tye.svg)](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-tye)
-[![Build Status](https://dev.azure.com/ms-azuretools/AzCode/_apis/build/status/vscode-tye%20(CI)?branchName=main)](https://dev.azure.com/ms-azuretools/AzCode/_build/latest?definitionId=35&branchName=main)
+# Tye2 for Visual Studio Code (Preview)
 
 The Tye extension makes it easier to run and debug applications that are using [Tye2](https://github.com/tye-v2/tye2)
 
@@ -24,21 +20,21 @@ Instructions for installing Tye2 CLI can be found [here](https://www.tye2.org/ge
 ## Feature Overview
 The Tye2 extension lets you view and debug Tye2 services.
 
-### View running Tye application
+### View running Tye2 application
 You can view the running Tye2 application, view all services and it's replicas, view logs and open the services in the browser.
 
-[![View running Tye application](https://aka.ms/tye-dashboard-t)](https://aka.ms/tye-dashboard-v)
+[![View running Tye2 application](https://aka.ms/tye-dashboard-t)](https://aka.ms/tye-dashboard-v)
 
 ### Generating Tye2 assets
 You can add `tye.yaml` file to your workspace by opening the Command Palette (<kbd>F1</kbd>) and using **Tye: Initialize Tye** command. The command will generate `tye.yaml` based on .NET projects in the solution currently open in the workspace.
 
 ### Generating task and launch configuration
-You can add the task **tye-run** to run the Tye application and a debug launch configuration **Debug with Tye** to debug the Tye application by opening the Command Palette (<kbd>F1</kbd>) and using the **Tye: Scaffold Tye Tasks** command.
+You can add the task **tye-run** to run the Tye2 application and a debug launch configuration **Debug with Tye** to debug the Tye application by opening the Command Palette (<kbd>F1</kbd>) and using the **Tye: Scaffold Tye Tasks** command.
 
 [![Generating tasks and launch configuration](https://aka.ms/tye-scaffold-t)](https://aka.ms/tye-scaffold-v)
 
 ### Running and debugging the Tye2 application
-The extension offers command to run the Tye2 application, attach the debugger to already running service or start the Tye application with debugger attached to all debuggable services.
+The extension offers command to run the Tye2 application, attach the debugger to already running service or start the Tye2 application with debugger attached to all debuggable services.
 
 #### Run the Tye2 application
 You can run the Tye application by running the task **tye-run**.
