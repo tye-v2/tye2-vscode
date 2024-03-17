@@ -91,7 +91,7 @@ export async function scaffoldTyeTasks(context: IActionContext, configurationPro
                     name,
                     preLaunchTask,
                     request: 'launch',
-                    type: 'tye',
+                    type: 'tye2',
                     watch: true
                 };
                 
