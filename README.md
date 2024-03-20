@@ -29,7 +29,7 @@ You can view the running Tye2 application, view all services and it's replicas, 
 You can add `tye.yaml` file to your workspace by opening the Command Palette (<kbd>F1</kbd>) and using **Tye: Initialize Tye** command. The command will generate `tye.yaml` based on .NET projects in the solution currently open in the workspace.
 
 ### Generating task and launch configuration
-You can add the task **tye-run** to run the Tye2 application and a debug launch configuration **Debug with Tye** to debug the Tye2 application by opening the Command Palette (<kbd>F1</kbd>) and using the **Tye: Scaffold Tye Tasks** command.
+You can add the task **tye2-run** to run the Tye2 application and a debug launch configuration **Debug with Tye2** to debug the Tye2 application by opening the Command Palette (<kbd>F1</kbd>) and using the **Tye: Scaffold Tye2 Tasks** command.
 
 [![Generating tasks and launch configuration](https://aka.ms/tye-scaffold-t)](https://aka.ms/tye-scaffold-v)
 
@@ -37,7 +37,7 @@ You can add the task **tye-run** to run the Tye2 application and a debug launch 
 The extension offers command to run the Tye2 application, attach the debugger to already running service or start the Tye2 application with debugger attached to all debuggable services.
 
 #### Run the Tye2 application
-You can run the Tye2 application by running the task **tye-run**.
+You can run the Tye2 application by running the task **tye2-run**.
 
 ![Run the Tye2 application](resources/readme/tye-run.gif)
 
@@ -47,13 +47,13 @@ You can attach the debugger to an already running service by clicking on the **A
 [![Debug an already running service](https://aka.ms/tye-debug-attach-t)](https://aka.ms/tye-debug-attach-v)
 
 #### Debug with Tye2
-The **Debug with Tye** launch configuration helps you debug multiple services at a time.
+The **Debug with Tye2** launch configuration helps you debug multiple services at a time.
 The default scaffolded configuration attaches the debugger to all debuggable services, but it can be configured to attach to only a subset of services.
 
 [![Debug all services](https://aka.ms/tye-debug-all-t)](https://aka.ms/tye-debug-all-v)
 
 ##### Configuring a subset of services to debug
-Services to debug can be configured by adding `services` property in the **Debug with Tye** launch configuration.
+Services to debug can be configured by adding `services` property in the **Debug with Tye2** launch configuration.
 
 ![Configuring subset of services for debugging](resources/readme/debug-subset.png)
 

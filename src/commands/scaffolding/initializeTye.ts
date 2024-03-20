@@ -28,9 +28,9 @@ async function promptToOverwriteTyeYamlIfNecessary(folder: vscode.WorkspaceFolde
 
     if (existingTyeYamlFiles.length > 0)
     {
-        const overwrite: vscode.MessageItem = { title: localize('commands.scaffolding.initTye.overwrite', 'Overwrite') };
+        const overwrite: vscode.MessageItem = { title: localize('commands.scaffolding.initTye2.overwrite', 'Overwrite') };
         const result = await ui.showWarningMessage(
-                localize('commands.scaffolding.initTye.tyeYamlExists', 'File \'{0}\' already exists.\n Do you want to overwrite it?', existingTyeYamlFiles[0].fsPath),
+                localize('commands.scaffolding.initTye2.tye2YamlExists', 'File \'{0}\' already exists.\n Do you want to overwrite it?', existingTyeYamlFiles[0].fsPath),
                 { modal: true },
                 overwrite);
 
@@ -61,7 +61,7 @@ export async function initializeTye(
     if (!folders || folders.length === 0) {
         context.errorHandling.suppressReportIssue = true;
 
-        throw new Error(localize('commands.scaffolding.initializeTye.noFolder', 'No workspace or folder has been opened.'));
+        throw new Error(localize('commands.scaffolding.initializeTye2.noFolder', 'No workspace or folder has been opened.'));
     }
 
     // TODO: Support multiple folders.

@@ -54,7 +54,7 @@ export class TyeServicesTreeDataProvider extends vscode.Disposable implements vs
         if (children.length === 0) {
             const isInstalled = await this.tyeInstallationManager.isInstalled();
 
-            await this.ui.executeCommand('setContext', 'vscode-tye.views.services.state', isInstalled ? 'notRunning' : 'notInstalled');
+            await this.ui.executeCommand('setContext', 'tye2-vscode.views.services.state', isInstalled ? 'notRunning' : 'notInstalled');
         }
 
         return children;

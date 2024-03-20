@@ -9,11 +9,11 @@ export interface SettingsProvider {
 
 export default class VsCodeSettingsProvider implements SettingsProvider {
     get tyePath(): (string | undefined) {
-        return this.getConfigurationValue('tyePath');
+        return this.getConfigurationValue('tye2Path');
     }
 
     private getConfigurationValue(name: string): (string | undefined) {
-        const configuration = vscode.workspace.getConfiguration('tye.paths');
+        const configuration = vscode.workspace.getConfiguration('tye2.paths');
 
         return configuration.get(name);
     }

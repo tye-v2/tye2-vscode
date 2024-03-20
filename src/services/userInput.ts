@@ -68,7 +68,7 @@ export class AggregateUserInput implements UserInput {
 
     async showIssueReporter(): Promise<void> {
         // TODO: Pull extension ID from package.json.
-        await vscode.commands.executeCommand('vscode.openIssueReporter', 'ms-azuretools.vscode-tye');
+        await vscode.commands.executeCommand('vscode.openIssueReporter', 'tye-v2.tye2-vscode');
     }
 
     showQuickPick<T extends vscode.QuickPickItem>(items: T[] | Thenable<T[]>, options: IAzureQuickPickOptions): Promise<T> {

@@ -17,7 +17,7 @@ export async function shutdownApplication(tyeClientProvider: TyeClientProvider, 
         const shutdown: vscode.MessageItem = { title: localize('commands.shutdownApplication.shutdown', 'Shutdown') };
 
         const result = await ui.showWarningMessage(
-                localize('commands.shutdownApplication.areYouSurePrompt', 'Shutdown Tye application "{0}"?', node.application.name),
+                localize('commands.shutdownApplication.areYouSurePrompt', 'Shutdown Tye2 application "{0}"?', node.application.name),
                 { modal: true },
                 shutdown);
 

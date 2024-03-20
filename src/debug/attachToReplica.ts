@@ -52,7 +52,7 @@ export async function attachToReplica(debugSessionMonitor: DebugSessionMonitor, 
                 folder,
                 {
                     type: 'coreclr',
-                    name: localize('debug.attachToReplica.sessionName', 'Tye Replica: {0}', replicaName),
+                    name: localize('debug.attachToReplica.sessionName', 'Tye2 Replica: {0}', replicaName),
                     request: 'attach',
                     processId: actualPid
                 });

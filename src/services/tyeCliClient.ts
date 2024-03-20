@@ -36,7 +36,7 @@ export default class LocalTyeCliClient implements TyeCliClient {
         const result = await Process.exec(command);
 
         if (result.code !== 0) {
-            throw new Error(localize('services.tyeCliClient.initFailed', 'Initializing Tye failed: {0}', result.stderr));
+            throw new Error(localize('services.tye2CliClient.initFailed', 'Initializing Tye2 failed: {0}', result.stderr));
         }
     }
 
@@ -50,7 +50,7 @@ export default class LocalTyeCliClient implements TyeCliClient {
         const result = await Process.exec(command);
 
         if (result.code !== 0) {
-            throw new Error(localize('services.tyeCliClient.versionFailed', 'Retrieving the tye CLI version failed: {0}', result.stderr));
+            throw new Error(localize('services.tye2CliClient.versionFailed', 'Retrieving the tye2 CLI version failed: {0}', result.stderr));
         }
 
         return result.stdout;

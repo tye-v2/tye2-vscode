@@ -57,7 +57,7 @@ export default class CommandTaskProvider extends CustomExecutionTaskProvider {
 
                             if (spawnOptions.cwd === undefined) {
                                 if (vscode.workspace.workspaceFolders === undefined || vscode.workspace.workspaceFolders.length === 0) {
-                                    throw new Error(localize('tasks.commandTaskProvider.noWorkspaceError', 'If no current working directory is set, you must open a workspace before running a Tye task.'));
+                                    throw new Error(localize('tasks.commandTaskProvider.noWorkspaceError', 'If no current working directory is set, you must open a workspace before running a Tye2 task.'));
                                 }
 
                                 spawnOptions.cwd = vscode.workspace.workspaceFolders[0].uri.fsPath;

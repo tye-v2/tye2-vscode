@@ -4,7 +4,7 @@
 import { UserInput } from '../../services/userInput';
 
 export function installTye(ui: UserInput): Thenable<boolean> {
-    return ui.openExternal('https://aka.ms/vscode-tye-help-install-tye');
+    return ui.openExternal('https://www.tye2.org/getting-started.html');
 }
 
 const createInstallTyeCommand = (ui: UserInput) => (): Thenable<boolean> => installTye(ui);

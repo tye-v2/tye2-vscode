@@ -26,7 +26,7 @@ export default class TyeApplicationNode implements TreeNode {
     private readonly id: string;
 
     constructor(public readonly application: TyeApplication, private readonly tyeClientProvider: TyeClientProvider) {
-        this.id = `vscode-tye.views.services.${this.application.id}`;  
+        this.id = `tye2-vscode.views.services.${this.application.id}`;  
     }
 
     async getChildren(): Promise<TreeNode[]> {

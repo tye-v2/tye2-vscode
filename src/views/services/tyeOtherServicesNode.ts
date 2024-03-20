@@ -15,7 +15,7 @@ export default class TyeOtherServicesNode implements TreeNode {
     }
     
     getTreeItem(): vscode.TreeItem {
-        const item = new vscode.TreeItem(localize('views.services.tyeOtherServicesNode.label', 'Other Services'), vscode.TreeItemCollapsibleState.Collapsed);
+        const item = new vscode.TreeItem(localize('views.services.tye2OtherServicesNode.label', 'Other Services'), vscode.TreeItemCollapsibleState.Collapsed);
 
         return item;
     }

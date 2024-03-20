@@ -66,7 +66,7 @@ export const config: webpack.Configuration = {
         path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-        new NLSBundlePlugin('vscode-tye'),
+        new NLSBundlePlugin('tye2-vscode'),
         // Fix warning:
         //   > WARNING in ./node_modules/ms-rest/lib/serviceClient.js 441:19-43
         //   > Critical dependency: the request of a dependency is an expression

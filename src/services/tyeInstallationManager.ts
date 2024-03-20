@@ -36,16 +36,16 @@ export default class LocalTyeInstallationManager implements TyeInstallationManag
                 context.buttons = [
                     {
                         callback: async () => {
-                            await this.ui.executeCommand('vscode-tye.commands.help.installTye')
+                            await this.ui.executeCommand('tye2-vscode.commands.help.installTye2')
                         },
-                        title: localize('services.tyeInstallationManager.installLatestTitle', 'Install Latest Tye')
+                        title: localize('services.tye2InstallationManager.installLatestTitle', 'Install Latest Tye2')
                     }
                 ];
 
                 context.suppressReportIssue = true;
             }
 
-            throw new Error(localize('services.tyeInstallationManager.versionNotInstalled', 'A compatible version of Tye has not been found. You may need to install a more recent version.'));
+            throw new Error(localize('services.tye2InstallationManager.versionNotInstalled', 'A compatible version of Tye2 has not been found. You may need to install a more recent version.'));
         }
     }
 

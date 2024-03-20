@@ -17,7 +17,7 @@ export class TyeLogDocumentContentProvider extends vscode.Disposable implements 
 
     async provideTextDocumentContent(uri: vscode.Uri, token: vscode.CancellationToken): Promise<string> {
         //
-        // Tye Log URI Schema: tye-log://logs/<applicationId>/<service>
+        // Tye Log URI Schema: tye2-log://logs/<applicationId>/<service>
         //
         // NOTE: Using 'logs' as the authority is for the benefit of VS Code, which only displays the URI path in editor title.
         //

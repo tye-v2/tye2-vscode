@@ -14,7 +14,7 @@ export default class ReviewIssuesNode implements TreeNode {
 
         treeItem.command = {
             arguments: [ this ],
-            command: 'vscode-tye.commands.help.reviewIssues',
+            command: 'tye2-vscode.commands.help.reviewIssues',
             title: '' // NOTE: Title is required but unused here.
         };
 

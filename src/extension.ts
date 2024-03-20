@@ -53,14 +53,14 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 
 	ext.context = context;
 	ext.ignoreBundle = true;
-	ext.outputChannel = registerDisposable(createAzExtOutputChannel('Tye', 'tye'));
+	ext.outputChannel = registerDisposable(createAzExtOutputChannel('Tye2', 'tye2'));
 
 	registerUIExtensionVariables(ext);
 
 	const telemetryProvider = new AzureTelemetryProvider();
 
 	return telemetryProvider.callWithTelemetry(
-		'vscode-tye.extension.activate',
+		'tye2-vscode.extension.activate',
 		(actionContext: IActionContext) => {
 			actionContext.telemetry.properties.isActivationEvent = 'true';
 
@@ -72,7 +72,7 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 			const tyeProcessProvider = new LocalTyeProcessProvider(new LocalPortProvider(), createPlatformProcessProvider(), tyeClientProvider, tyePathProvider);
 			const tyeApplicationProvider = new TaskBasedTyeApplicationProvider(tyeProcessProvider, tyeClientProvider);
 
-			registerDisposable(vscode.workspace.registerTextDocumentContentProvider('tye-log', registerDisposable(new TyeLogDocumentContentProvider(tyeApplicationProvider, tyeClientProvider))));
+			registerDisposable(vscode.workspace.registerTextDocumentContentProvider('tye2-log', registerDisposable(new TyeLogDocumentContentProvider(tyeApplicationProvider, tyeClientProvider))));
 		
 			const extensionPackage = <ExtensionPackage>context.extension.packageJSON;
 			const tyeCliClient = new LocalTyeCliClient(() => tyePathProvider.getTyePath());
@@ -82,27 +82,27 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 			const treeProvider = new TyeServicesTreeDataProvider(tyeApplicationProvider, tyeClientProvider, tyeInstallationManager, ui);
 
 			registerDisposable(vscode.window.registerTreeDataProvider(
-				'vscode-tye.views.services',
+				'tye2-vscode.views.services',
 				treeProvider
 			));
 
 			registerDisposable(
 				vscode.window.registerTreeDataProvider(
-					'vscode-tye.views.help',
+					'tye2-vscode.views.help',
 					new HelpTreeDataProvider()));
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.refreshEntry',
+				'tye2-vscode.commands.refreshEntry',
 				() => {
 					treeProvider.refresh();
 				});
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.browseService',
+				'tye2-vscode.commands.browseService',
 				createBrowseServiceCommand(ui));
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.launchTyeDashboard',
+				'tye2-vscode.commands.launchTyeDashboard',
 				async (context, node: TyeApplicationNode) => {
 					if (node.application.dashboard?.scheme === 'http' || node.application.dashboard?.scheme === 'https') {
 						await vscode.env.openExternal(node.application.dashboard);
@@ -110,34 +110,34 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 				});
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.shutdownApplication',
+				'tye2-vscode.commands.shutdownApplication',
 				createShutdownApplicationCommand(tyeClientProvider, ui));
 	
 			const debugSessionMonitor = registerDisposable(new CoreClrDebugSessionMonitor());
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.attachService',
+				'tye2-vscode.commands.attachService',
 				async (context, node: TreeNode) => await registerAttachCommand(node, debugSessionMonitor));
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.attachReplica',
+				'tye2-vscode.commands.attachReplica',
 				async (context, node: TreeNode) => await registerAttachCommand(node, debugSessionMonitor));
 
 			const scaffolder = new LocalScaffolder();
 			const tyeApplicationConfigurationProvider = new WorkspaceTyeApplicationConfigurationProvider(new YamlTyeApplicationConfigurationReader());
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.scaffolding.initTye',
+				'tye2-vscode.commands.scaffolding.initTye2',
 				createInitializeTyeCommand(tyeApplicationConfigurationProvider, tyeCliClient, tyeInstallationManager, ui));
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.scaffolding.scaffoldTyeTasks',
+				'tye2-vscode.commands.scaffolding.scaffoldTye2Tasks',
 				createScaffoldTyeTasksCommand(tyeApplicationConfigurationProvider, scaffolder, ui));
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.showLogs',
+				'tye2-vscode.commands.showLogs',
 				async (context, node: TyeServiceNode) => {
-					const logUri = vscode.Uri.parse(`tye-log://logs/${node.application.id}/${node.service.description.name}`);
+					const logUri = vscode.Uri.parse(`tye2-log://logs/${node.application.id}/${node.service.description.name}`);
 							
 					const doc = await vscode.workspace.openTextDocument(logUri);
 
@@ -145,7 +145,7 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 				});
 
 			telemetryProvider.registerCommandWithTelemetry(
-				'vscode-tye.commands.debugAll',
+				'tye2-vscode.commands.debugAll',
 				async (context, node: TyeApplicationNode) => {
 					const application = node.application;
 
@@ -160,17 +160,17 @@ export function activate(context: vscode.ExtensionContext): Promise<void> {
 					}
 				});
 		
-			telemetryProvider.registerCommandWithTelemetry('vscode-tye.commands.help.getStarted', createGetStartedCommand(ui));
-			telemetryProvider.registerCommandWithTelemetry('vscode-tye.commands.help.installTye', createInstallTyeCommand(ui));
-			telemetryProvider.registerCommandWithTelemetry('vscode-tye.commands.help.readDocumentation', createReadDocumentationCommand(ui));
-			telemetryProvider.registerCommandWithTelemetry('vscode-tye.commands.help.reportIssue', createReportIssueCommand(ui));
-			telemetryProvider.registerCommandWithTelemetry('vscode-tye.commands.help.reviewIssues', createReviewIssuesCommand(ui));
+			telemetryProvider.registerCommandWithTelemetry('tye2-vscode.commands.help.getStarted', createGetStartedCommand(ui));
+			telemetryProvider.registerCommandWithTelemetry('tye2-vscode.commands.help.installTye2', createInstallTyeCommand(ui));
+			telemetryProvider.registerCommandWithTelemetry('tye2-vscode.commands.help.readDocumentation', createReadDocumentationCommand(ui));
+			telemetryProvider.registerCommandWithTelemetry('tye2-vscode.commands.help.reportIssue', createReportIssueCommand(ui));
+			telemetryProvider.registerCommandWithTelemetry('tye2-vscode.commands.help.reviewIssues', createReviewIssuesCommand(ui));
 	
 			const applicationWatcher = registerDisposable(new TyeApplicationDebugSessionWatcher(debugSessionMonitor, tyeApplicationProvider));
 		
 			registerDisposable(vscode.debug.registerDebugConfigurationProvider('tye2', new TyeDebugConfigurationProvider(debugSessionMonitor, tyeApplicationProvider, applicationWatcher, ui)));
 		
-			registerDisposable(vscode.tasks.registerTaskProvider('tye-run', new TyeRunCommandTaskProvider(telemetryProvider, tyeApplicationProvider, tyeClientProvider, tyeInstallationManager, tyePathProvider)));
+			registerDisposable(vscode.tasks.registerTaskProvider('tye2-run', new TyeRunCommandTaskProvider(telemetryProvider, tyeApplicationProvider, tyeClientProvider, tyeInstallationManager, tyePathProvider)));
 
 			return Promise.resolve();
 		});

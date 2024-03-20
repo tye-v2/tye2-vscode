@@ -46,7 +46,7 @@ export default class TyeRunCommandTaskProvider extends CommandTaskProvider {
                 let tyePid: number | undefined = undefined;
 
                 return telemetryProvider.callWithTelemetry(
-                    'vscode-tye.tasks.tye-run',
+                    'tye2-vscode.tasks.tye2-run',
                     async (context: IActionContext) => {
                         await tyeInstallationManager.ensureInstalled(context.errorHandling);
 
@@ -109,6 +109,6 @@ export default class TyeRunCommandTaskProvider extends CommandTaskProvider {
                     });
             },
             /* isBackgroundTask: */ true,
-            /* problemMatchers: */ ['$tye-run']);
+            /* problemMatchers: */ ['$tye2-run']);
     }
 }
