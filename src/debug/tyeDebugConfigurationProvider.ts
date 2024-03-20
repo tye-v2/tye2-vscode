@@ -33,7 +33,7 @@ export class TyeDebugConfigurationProvider implements vscode.DebugConfigurationP
         const tyeDebugConfiguration = <TyeDebugConfiguration>debugConfiguration;
 
         // NOTE: In the unlikely event of multiple same-named applications running, we arbitrarily use the first match.
-        // TODO: Cache applications started via our `tye-run` tasks, and give preference to those.
+        // TODO: Cache applications started via our `tye2-run` tasks, and give preference to those.
 
         function isValidApplication(a: TyeApplication | undefined): a is TyeApplication {
             return a !== undefined;
@@ -50,7 +50,7 @@ export class TyeDebugConfigurationProvider implements vscode.DebugConfigurationP
         try
         {
             application = await this.userInput.withProgress(
-                localize('debug.tyeDebugConfigurationProvider.waitingForApplication', 'Waiting for Tye application to start...'),
+                localize('debug.tye2DebugConfigurationProvider.waitingForApplication', 'Waiting for Tye2 application to start...'),
                 (progress, cancellationToken) => {
 
                     const cancellation = observableFromCancellationToken<TyeApplication>(cancellationToken);
@@ -74,26 +74,26 @@ export class TyeDebugConfigurationProvider implements vscode.DebugConfigurationP
         }
 
         if (!application) {
-            throw new Error(localize('debug.tyeDebugConfigurationProvider.applicationNotRunning', 'The Tye application "{0}" is not running.', tyeDebugConfiguration.applicationName));
+            throw new Error(localize('debug.tye2DebugConfigurationProvider.applicationNotRunning', 'The Tye2 application "{0}" is not running.', tyeDebugConfiguration.applicationName));
         }
 
         const debuggableServiceNames = Object.keys(application.projectServices ?? {});
         
         if (application.projectServices === undefined || debuggableServiceNames.length === 0) {
-            throw new Error(localize('debug.tyeDebugConfigurationProvider.noDebuggableServices', 'The Tye application "{0}" does not have any debuggable services.', tyeDebugConfiguration.applicationName));
+            throw new Error(localize('debug.tye2DebugConfigurationProvider.noDebuggableServices', 'The Tye2 application "{0}" does not have any debuggable services.', tyeDebugConfiguration.applicationName));
         }
         
         const debuggedServiceNames = tyeDebugConfiguration.services ?? debuggableServiceNames;
 
         if (debuggedServiceNames.length === 0) {
-            throw new Error(localize('debug.tyeDebugConfigurationProvider.noDebuggedServices', 'No services were set to be debugged.'));
+            throw new Error(localize('debug.tye2DebugConfigurationProvider.noDebuggedServices', 'No services were set to be debugged.'));
         }
 
         for (const serviceName of debuggedServiceNames) {
             const service = application.projectServices[serviceName];
 
             if (service === undefined) {
-                throw new Error(localize('debug.tyeDebugConfigurationProvider.noDebuggedService', 'The Tye application "{0}" does not have the debugged service "{1}".', tyeDebugConfiguration.applicationName, serviceName));
+                throw new Error(localize('debug.tye2DebugConfigurationProvider.noDebuggedService', 'The Tye2 application "{0}" does not have the debugged service "{1}".', tyeDebugConfiguration.applicationName, serviceName));
             }
 
             for (const replicaName of Object.keys(service.replicas)) {

@@ -24,7 +24,7 @@ async function createUniqueName(prefix: string, isUnique: ConflictUniquenessPred
     }
 
     if (name.done) {
-        throw new Error(localize('commands.scaffoldTyeTasks.uniqueNameError', 'Unable to generate a unique name.'));
+        throw new Error(localize('commands.scaffoldTye2Tasks.uniqueNameError', 'Unable to generate a unique name.'));
     }
 
     return name.value;
@@ -36,14 +36,14 @@ export async function scaffoldTyeTasks(context: IActionContext, configurationPro
     if (configurations.length === 0) {
         context.errorHandling.suppressReportIssue = true;
 
-        throw new Error(localize('commands.scaffolding.scaffoldTyeTasks.noTyeYaml', 'No Tye YAML file exists in the open workspace, or no workspace or folder has been opened.'));
+        throw new Error(localize('commands.scaffolding.scaffoldTye2Tasks.noTye2Yaml', 'No Tye2 YAML file exists in the open workspace, or no workspace or folder has been opened.'));
     }
 
     // TODO: Support multiple configuration files.
     if (configurations.length > 1) {
         context.errorHandling.suppressReportIssue = true;
 
-        throw new Error(localize('commands.scaffolding.scaffoldTyeTasks.tooManyTyeYamls', 'Scaffolding supports only a single Tye YAML file per workspace.'));
+        throw new Error(localize('commands.scaffolding.scaffoldTye2Tasks.tooManyTye2Yamls', 'Scaffolding supports only a single Tye2 YAML file per workspace.'));
     }
 
     const workspaceConfiguration = configurations[0];
@@ -51,30 +51,30 @@ export async function scaffoldTyeTasks(context: IActionContext, configurationPro
 
     const onTaskConflict: ConflictHandler =
         async (label, isUnique) => {
-            const overwrite: vscode.MessageItem = { title: localize('commands.scaffolding.scaffoldTyeTasks.overwriteTask', 'Overwrite') };
-            const newTask: vscode.MessageItem = { title: localize('commands.scaffolding.scaffoldTyeTasks.createTask', 'Create task') };
+            const overwrite: vscode.MessageItem = { title: localize('commands.scaffolding.scaffoldTye2Tasks.overwriteTask', 'Overwrite') };
+            const newTask: vscode.MessageItem = { title: localize('commands.scaffolding.scaffoldTye2Tasks.createTask', 'Create task') };
 
             const result = await ui.showWarningMessage(
-                localize('commands.scaffolding.scaffoldTyeTasks.taskExists', 'The task \'{0}\' already exists. Do you want to overwrite it or create a new task?', label),
+                localize('commands.scaffolding.scaffoldTye2Tasks.taskExists', 'The task \'{0}\' already exists. Do you want to overwrite it or create a new task?', label),
                 { modal: true },
                 overwrite, newTask);
 
             if (result === overwrite) {
                 return { 'type': 'overwrite' };
             } else {
-                label = await createUniqueName(localize('commands.scaffolding.scaffoldTyeTasks.taskPrefix', '{0}-', label), isUnique);
+                label = await createUniqueName(localize('commands.scaffolding.scaffoldTye2Tasks.taskPrefix', '{0}-', label), isUnique);
 
                 return { 'type': 'rename', name: label };
             }
         };
 
     const preLaunchTask = await scaffolder.scaffoldTask(
-        'tye-run',
+        'tye2-run',
         workspaceConfiguration.folder,
         label => {
             const tyeRunTask: TyeRunTaskDefinition = {
                 label,
-                type: 'tye-run',
+                type: 'tye2-run',
                 watch: true
             };
 
@@ -83,7 +83,7 @@ export async function scaffoldTyeTasks(context: IActionContext, configurationPro
         onTaskConflict);
 
         await scaffolder.scaffoldConfiguration(
-            localize('commands.scaffolding.scaffoldTyeTasks.configurationName', 'Debug with Tye'),
+            localize('commands.scaffolding.scaffoldTye2Tasks.configurationName', 'Debug with Tye2'),
             workspaceConfiguration.folder,
             name => {
                 const tyeConfiguration: TyeDebugConfiguration = {
@@ -98,18 +98,18 @@ export async function scaffoldTyeTasks(context: IActionContext, configurationPro
                 return tyeConfiguration;
             },
             async (name, isUnique) => {
-                const overwrite: vscode.MessageItem = { title: localize('commands.scaffolding.scaffoldTyeTasks.overwriteConfiguration', 'Overwrite') };
-                const newConfiguration: vscode.MessageItem = { title: localize('commands.scaffolding.scaffoldTyeTasks.createConfiguration', 'Create configuration') };
+                const overwrite: vscode.MessageItem = { title: localize('commands.scaffolding.scaffoldTye2Tasks.overwriteConfiguration', 'Overwrite') };
+                const newConfiguration: vscode.MessageItem = { title: localize('commands.scaffolding.scaffoldTye2Tasks.createConfiguration', 'Create configuration') };
     
                 const result = await ui.showWarningMessage(
-                    localize('commands.scaffolding.scaffoldTyeTasks.configurationExists', 'The configuration \'{0}\' already exists. Do you want to overwrite it or create a new configuration?', name),
+                    localize('commands.scaffolding.scaffoldTye2Tasks.configurationExists', 'The configuration \'{0}\' already exists. Do you want to overwrite it or create a new configuration?', name),
                     { modal: true },
                     overwrite, newConfiguration);
     
                 if (result === overwrite) {
                     return { 'type': 'overwrite' };
                 } else {
-                    name = await createUniqueName(localize('commands.scaffolding.scaffoldTyeTasks.configurationPrefix', '{0} - ', name), isUnique);
+                    name = await createUniqueName(localize('commands.scaffolding.scaffoldTye2Tasks.configurationPrefix', '{0} - ', name), isUnique);
     
                     return { 'type': 'rename', name };
                 }
